@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useRef} from 'react';
 import './App.css';
+import {Col, Image, Row, Table} from "antd";
+import ReactHlsPlayer from "react-hls-player";
+import {MOCK_DATA_SOURCE, STREAM_VIDEO_URL, TABLE_COLUMNS} from "./constant";
 
 function App() {
+  const videoEl = useRef<HTMLVideoElement | null>(null);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Row gutter={[40, 40]}>
+          <Col span={12}>
+            <Row>
+              <ReactHlsPlayer
+                  src={STREAM_VIDEO_URL}
+                  autoPlay={true}
+                  controls={true}
+                  width="100%"
+                  height="auto"
+                  playerRef={videoEl}
+              />
+            </Row>
+          </Col>
+          <Col span={12}>
+            <Row>
+              <Col span={24}>
+                <Table dataSource={MOCK_DATA_SOURCE} columns={TABLE_COLUMNS} />
+              </Col>
+              <Col span={24}>
+                <Image src="https://forward.nhn.com/2020/seoul/hands-on-labs/toastui.chart-dashboard/_images/step08.png" />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
     </div>
   );
 }
