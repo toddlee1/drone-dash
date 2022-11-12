@@ -4,19 +4,19 @@ export const STREAM_VIDEO_URL_2 = 'https://bitdash-a.akamaihd.net/content/sintel
 
 export const TABLE_COLUMNS = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'Oxy',
+        dataIndex: 'oxy',
+        key: 'oxy',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'Sensed',
+        dataIndex: 'sensed',
+        key: 'sensed',
     }
 ];
 export const MOCK_DATA_SOURCE = [

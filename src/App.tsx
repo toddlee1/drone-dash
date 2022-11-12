@@ -1,13 +1,22 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
 import {Col, Image, Row, Table} from "antd";
 import ReactHlsPlayer from "react-hls-player";
-import {MOCK_DATA_SOURCE, STREAM_VIDEO_URL, STREAM_VIDEO_URL_2, TABLE_COLUMNS} from "./constant";
+import {STREAM_VIDEO_URL, TABLE_COLUMNS} from "./constant";
+import axios from "axios";
 import {LineChart} from "./line-chart";
 import {PieChart} from "./pie-chart";
 
 function App() {
   const videoEl = useRef<HTMLVideoElement | null>(null);
+  const [gasDataList, setGasDataList] = useState([]);
+  const fetch = async () => {
+    const res = await axios.get('/api/gas');
+    setGasDataList(res.data);
+  }
+  useEffect(() => {
+    fetch();
+  }, []);
   return (
     <div className="App">
         <Row gutter={[40, 40]}>
@@ -24,7 +33,7 @@ function App() {
             </Row>
             <Row style={{height: '47vh'}}>
               <ReactHlsPlayer
-                  src={STREAM_VIDEO_URL_2}
+                  src={STREAM_VIDEO_URL}
                   autoPlay={true}
                   controls={true}
                   width="100%"
@@ -36,18 +45,11 @@ function App() {
           <Col span={12}>
             <Row style={{height: '47vh'}}>
               <Col span={24}>
-                <Table dataSource={MOCK_DATA_SOURCE} columns={TABLE_COLUMNS} />
+                <Table size='small' dataSource={gasDataList} columns={TABLE_COLUMNS} />
               </Col>
             </Row>
             <Row style={{height: '47vh'}}>
-              <Col span={12}>
-                <LineChart />
-              </Col>
-              <Col span={3}></Col>
-              <Col span={6}>
-                <PieChart />
-              </Col>
-              <Col span={3}></Col>
+              <LineChart gasDataList={gasDataList} />
             </Row>
           </Col>
         </Row>
