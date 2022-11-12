@@ -11,7 +11,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
-import {faker} from "@faker-js/faker";
 
 ChartJS.register(
     CategoryScale,
@@ -36,12 +35,12 @@ export const options: ChartOptions<'line'> = {
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 type GasDataType = {
     id: number;
     oxy: string;
     sensed: string;
 }
+
 type Props = {
     gasDataList: GasDataType[];
 }
