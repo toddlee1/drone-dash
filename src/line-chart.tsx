@@ -35,12 +35,6 @@ export const options: ChartOptions<'line'> = {
     },
 };
 
-type GasDataType = {
-    id: number;
-    oxy: string;
-    sensed: string;
-}
-
 type Props = {
     gasDataList: GasDataType[];
 }
@@ -53,7 +47,7 @@ export function LineChart(props: Props) {
             {
                 label: '산소',
                 data: gasDataList.map(it => Number(it.oxy)),
-                borderColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(104,255,99)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
         ],
