@@ -40,7 +40,7 @@ const CustomLayout = () => {
                             </Menu.Item>
                         </Menu>
                     </Sider>
-                    <Content style={{padding: '0 12px', width: '1500px'}}>
+                    <Content style={{padding: '0 12px', width: '1500px', height: '100%'}}>
                         <Routes>
                             <Route path="/" element={<Live/>}/>
                             <Route path="/videos" element={<VideoList />}/>

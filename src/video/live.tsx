@@ -13,7 +13,7 @@ function Live() {
     const tVideoEl = useRef<HTMLVideoElement | null>(null);
 
     const [gasDataList, setGasDataList] = useState<GasDataType[]>([]);
-    const [latestData, setLatestData ] = useState<GasDataType>({} as GasDataType);
+    const [latestData, setLatestData] = useState<GasDataType>({} as GasDataType);
     const [bgColor, setBgColor] = useState<BgColor>('#3f8600');
     const [extraVideoPlayer, setExtraVideoPlayer] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ function Live() {
         const oxy = Number(latestData && latestData.oxy);
         if (oxy <= 18.1 || oxy >= 23.5) setBgColor('#cf1322')
         else if (oxy > 18.1 && oxy < 18.3) setBgColor('#fadb14')
-        else if (oxy >= 23.2 && oxy < 23.5 ) setBgColor('#fadb14')
+        else if (oxy >= 23.2 && oxy < 23.5) setBgColor('#fadb14')
         else setBgColor('#3f8600')
     }, [latestData]);
 
@@ -48,11 +48,19 @@ function Live() {
         <div className="App">
             <Row gutter={[12, 0]} style={{width: '1450px', height: '100%'}}>
                 <Col style={{width: '750px', height: '100%'}}>
-                    <Row gutter={[0,24]} justify="space-around" align="top" style={{height: '100%'}}>
-                        <Card size="small" headStyle={{borderBottom: 'solid white 0.5px'}} style={{border: 'solid white 0.5px', width: '100%', backgroundColor: 'black'}} extra={
+                    <Row gutter={[0, 24]} align="top" style={{height: '100%'}}>
+                        <Card size="small" headStyle={{borderBottom: 'solid white 0.5px'}}
+                              style={{
+                                  border: 'solid white 0.5px',
+                                  width: '100%',
+                                  minHeight: '835px',
+                                  height: '100%',
+                                  backgroundColor: 'black'
+                              }} extra={
                             <Space size="small">
                                 <div style={{color: 'white'}}>열영상 추가</div>
-                                <Switch style={{border: 'solid white'}} checked={extraVideoPlayer} onClick={() => setExtraVideoPlayer((prev) => !prev)} />
+                                <Switch style={{border: 'solid white'}} checked={extraVideoPlayer}
+                                        onClick={() => setExtraVideoPlayer((prev) => !prev)}/>
                             </Space>
                         }>
                             <Space size="small" direction="vertical">
@@ -74,24 +82,39 @@ function Live() {
                         </Card>
                     </Row>
                 </Col>
-                <Col style={{width: 600}}>
-                    <Row gutter={[0, 12]}>
-                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
-                            <Statistic
-                                style={{backgroundColor: bgColor, height: '100%'}}
-                                value={latestData && latestData.oxy}
-                                precision={2}
-                                valueStyle={{ color: 'white', fontSize: '5rem' }}
-                                suffix="%"
-                            />
+                <Col style={{width: 600, height: '100%'}}>
+                    <Row style={{minHeight: '835px', height: '100%'}} gutter={[0, 12]}>
+                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}
+                              bodyStyle={{color: 'white', fontSize: '5rem', backgroundColor: bgColor, height: '100%'}}>
+                            {latestData && latestData.oxy} %
                         </Card>
                         <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
-                            <LineChart gasDataList={gasDataList} />
+                            <LineChart gasDataList={gasDataList}/>
                         </Card>
-                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
-                            <Table size='small' dataSource={gasDataList} columns={TABLE_COLUMNS} pagination={false} scroll={{ y: 440 }} />
+                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}
+                              bodyStyle={{height: '100%'}}>
+                            <Table size='small' dataSource={gasDataList} columns={TABLE_COLUMNS} pagination={false}
+                                   scroll={{y: 440}}/>
                         </Card>
                     </Row>
+                    {/*<Space size="small" direction="vertical" style={{minHeight: '835px', height: '100%'}}>*/}
+                    {/*    <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>*/}
+                    {/*        <Statistic*/}
+                    {/*            style={{backgroundColor: bgColor, height: '100%'}}*/}
+                    {/*            value={latestData && latestData.oxy}*/}
+                    {/*            precision={2}*/}
+                    {/*            valueStyle={{color: 'white', fontSize: '5rem'}}*/}
+                    {/*            suffix="%"*/}
+                    {/*        />*/}
+                    {/*    </Card>*/}
+                    {/*    <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>*/}
+                    {/*        <LineChart gasDataList={gasDataList}/>*/}
+                    {/*    </Card>*/}
+                    {/*    <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>*/}
+                    {/*        <Table size='small' dataSource={gasDataList} columns={TABLE_COLUMNS} pagination={false}*/}
+                    {/*               scroll={{y: 440}}/>*/}
+                    {/*    </Card>*/}
+                    {/*</Space>*/}
                 </Col>
             </Row>
         </div>
