@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import '../App.css';
 import {Card, Col, Row, Space, Statistic, Switch, Table} from "antd";
 import ReactHlsPlayer from "react-hls-player";
@@ -13,30 +13,36 @@ function Live() {
     const tVideoEl = useRef<HTMLVideoElement | null>(null);
 
     const [gasDataList, setGasDataList] = useState<GasDataType[]>([]);
-    const [currentData, setCurrentData ] = useState<GasDataType>({} as GasDataType);
+    const [latestData, setLatestData ] = useState<GasDataType>({} as GasDataType);
     const [bgColor, setBgColor] = useState<BgColor>('#3f8600');
     const [extraVideoPlayer, setExtraVideoPlayer] = useState<boolean>(false);
 
-    const fetch = async () => {
-        const res = await axios.get('/dron/gas');
-        setGasDataList(res.data);
-    }
+    const fetchLatestData = useCallback(async () => {
+        const res = await axios.get('/dron/gas/latest');
+        setLatestData((prev) => prev.id !== res.data.id ? res.data : prev);
+        // setGasDataList((prev) => prev.concat(res.data))
+    }, [latestData]);
 
     useEffect(() => {
-        fetch();
+        fetchLatestData();
+        const interval = setInterval(() => {
+            fetchLatestData();
+        }, 5000);
+
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
-        setCurrentData(gasDataList[0]);
-    }, [gasDataList]);
+        latestData.id && setGasDataList((prev) => prev.concat(latestData));
+    }, [latestData]);
 
     useEffect(() => {
-        const oxy = Number(currentData && currentData.oxy);
+        const oxy = Number(latestData && latestData.oxy);
         if (oxy <= 18.1 || oxy >= 23.5) setBgColor('#cf1322')
         else if (oxy > 18.1 && oxy < 18.3) setBgColor('#fadb14')
         else if (oxy >= 23.2 && oxy < 23.5 ) setBgColor('#fadb14')
         else setBgColor('#3f8600')
-    }, [currentData]);
+    }, [latestData]);
 
     return (
         <div className="App">
@@ -73,7 +79,7 @@ function Live() {
                         <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
                             <Statistic
                                 style={{backgroundColor: bgColor, height: '100%'}}
-                                value={currentData && currentData.oxy}
+                                value={latestData && latestData.oxy}
                                 precision={2}
                                 valueStyle={{ color: 'white', fontSize: '5rem' }}
                                 suffix="%"
