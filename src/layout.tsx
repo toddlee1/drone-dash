@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Live from "./live";
+import Live from "./video/live";
 import {Layout, Menu, Select} from "antd";
 import {LaptopOutlined} from '@ant-design/icons';
 import type {MenuProps} from 'antd';
@@ -19,12 +19,12 @@ const CustomLayout = () => {
 
     return (
         <Layout style={{height: '100vh', backgroundColor: 'black'}}>
-            <Header style={{border: 'solid white', backgroundColor: 'black'}}>
+            <Header style={{borderBottom: 'solid white 0.5px', backgroundColor: 'black'}}>
                 <div className="logo"/>
             </Header>
             <Content style={{padding: '0 50px', height: '100%'}}>
                 <Layout className="site-layout-background" style={{padding: '24px 0', height: '100%', backgroundColor: 'black'}}>
-                    <Sider className="site-layout-background" width={200} style={{border: 'solid white', backgroundColor: 'black'}}>
+                    <Sider className="site-layout-background" width={200} style={{border: 'solid white 0.5px', backgroundColor: 'black'}}>
                         <Menu
                             theme="dark"
                             mode="inline"
@@ -40,7 +40,7 @@ const CustomLayout = () => {
                             </Menu.Item>
                         </Menu>
                     </Sider>
-                    <Content style={{padding: '0 24px', minHeight: 280}}>
+                    <Content style={{padding: '0 12px', width: '1500px'}}>
                         <Routes>
                             <Route path="/" element={<Live/>}/>
                             <Route path="/videos" element={<VideoList />}/>

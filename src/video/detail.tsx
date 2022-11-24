@@ -8,7 +8,7 @@ import {useLocation} from "react-router";
 
 
 function VideoDetail() {
-    const { pathname } = useLocation();
+    const {pathname} = useLocation();
 
     const [video, setVideo] = useState<Video>({} as Video)
     const [gasDataList, setGasDataList] = useState<GasDataType[]>([]);
@@ -31,40 +31,43 @@ function VideoDetail() {
 
     return (
         <div className="App">
-            <Row gutter={[24, 0]} style={{height: '100%'}}>
-                <Col span={18} style={{height: '100%'}}>
-                    <Row gutter={[0, 24]} justify="space-around" align="middle" style={{height: '100%'}}>
-                        <Card style={{width: '100%', backgroundColor: 'black'}} extra={
+            <Row gutter={[12, 0]} style={{width: '1450px', height: '100%'}}>
+                <Col style={{width: '750px', height: '100%'}}>
+                    <Row gutter={[0, 24]} justify="space-around" align="top" style={{width: '100%', height: '100%'}}>
+                        <Card size="small" headStyle={{borderBottom: 'solid white 0.5px'}} style={{border: 'solid white 0.5px', width: '100%', backgroundColor: 'black'}} extra={
                             <Space size="small">
                                 <div style={{color: 'white'}}>열영상 추가</div>
                                 <Switch style={{border: 'solid white'}} checked={extraVideoPlayer}
                                         onClick={() => setExtraVideoPlayer((prev) => !prev)}/>
                             </Space>
                         }>
-                            <Player
-                                playsInline
-                                src={video.video_url}
-                            />
+                            <Space size="small" direction="vertical">
+                                <Player
+                                    playsInline
+                                    src={video.video_url}
+                                    fluid={false}
+                                    height={380}
+                                    aspectRatio="16:9"
+                                />
+                                {extraVideoPlayer && (<Player
+                                    playsInline
+                                    src={video.ir_video_url}
+                                    fluid={false}
+                                    height={380}
+                                    aspectRatio="16:9"
+                                />)}
+                            </Space>
+
                         </Card>
-                        {
-                            extraVideoPlayer && (
-                                <Card style={{width: '100%', backgroundColor: 'black'}}>
-                                    <Player
-                                        playsInline
-                                        src={video.ir_video_url}
-                                    />
-                                </Card>
-                            )
-                        }
                     </Row>
                 </Col>
-                <Col span={6}>
-                    <Row gutter={[0, 24]} style={{height: '100%'}}>
-                        <Card style={{width: '100%', backgroundColor: 'black'}}>
-                            <Table size='small' dataSource={gasDataList} columns={TABLE_COLUMNS} pagination={false}/>
-                        </Card>
-                        <Card style={{width: '100%', backgroundColor: 'black'}}>
+                <Col style={{width: 600}}>
+                    <Row gutter={[0, 12]} style={{height: '100%'}}>
+                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
                             <LineChart gasDataList={gasDataList}/>
+                        </Card>
+                        <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
+                            <Table size='small' style={{width: '100%'}} dataSource={gasDataList} columns={TABLE_COLUMNS} pagination={false} scroll={{ y: 550 }}/>
                         </Card>
                     </Row>
                 </Col>
