@@ -65,7 +65,7 @@ function VideoDetail() {
                     </Row>
                 </Col>
                 <Col style={{width: 600}}>
-                    <Row gutter={[0, 12]} style={{height: '100%'}}>
+                    <Row gutter={[0, 12]}>
                         <Card size="small" style={{width: '100%', backgroundColor: 'black'}}>
                             <LineChart gasDataList={gasDataList}/>
                         </Card>
