@@ -15,7 +15,7 @@ function VideoDetail() {
     const [extraVideoPlayer, setExtraVideoPlayer] = useState<boolean>(false);
 
     const fetchGas = async () => {
-        const res = await axios.get('/dron/gas');
+        const res = await axios.get('/dron/gas', {params:{sensed: Math.floor(new Date(video.created_at).getTime() / 1000)}});
         setGasDataList(res.data);
     }
 
@@ -25,9 +25,12 @@ function VideoDetail() {
     }
 
     useEffect(() => {
-        fetchGas();
         fetchVideo();
     }, []);
+
+    useEffect(() => {
+        video.created_at && fetchGas();
+    }, [video])
 
     return (
         <div className="App">

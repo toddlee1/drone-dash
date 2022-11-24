@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import '../App.css';
 import {Card, Col, Row, Space, Statistic, Switch, Table} from "antd";
 import ReactHlsPlayer from "react-hls-player";
-import {NCP_STREAM_VIDEO_URL, STREAM_VIDEO_URL, TABLE_COLUMNS} from "../constant";
+import {NCP_STREAM_VIDEO_URL, NCP_STREAM_VIDEO_URL_IR, TABLE_COLUMNS} from "../constant";
 import axios from "axios";
 import {LineChart} from "../line-chart";
 
@@ -42,8 +42,8 @@ function Live() {
         <div className="App">
             <Row gutter={[12, 0]} style={{width: '1450px', height: '100%'}}>
                 <Col style={{width: '750px', height: '100%'}}>
-                    <Row gutter={[0,24]} justify="space-around" align="middle" style={{height: '100%'}}>
-                        <Card size="small" headStyle={{borderBottom: 'solid white 0.5px'}} style={{border: 'solid white 0.5px', width: '100%', backgroundColor: 'black', height: '100%'}} extra={
+                    <Row gutter={[0,24]} justify="space-around" align="top" style={{height: '100%'}}>
+                        <Card size="small" headStyle={{borderBottom: 'solid white 0.5px'}} style={{border: 'solid white 0.5px', width: '100%', backgroundColor: 'black'}} extra={
                             <Space size="small">
                                 <div style={{color: 'white'}}>열영상 추가</div>
                                 <Switch style={{border: 'solid white'}} checked={extraVideoPlayer} onClick={() => setExtraVideoPlayer((prev) => !prev)} />
@@ -58,7 +58,7 @@ function Live() {
                                     playerRef={videoEl}
                                 />
                                 {extraVideoPlayer && (<ReactHlsPlayer
-                                    src={STREAM_VIDEO_URL}
+                                    src={NCP_STREAM_VIDEO_URL_IR}
                                     autoPlay={true}
                                     controls={true}
                                     style={{height: 380, width: 675}}

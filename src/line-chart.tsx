@@ -43,8 +43,7 @@ export function LineChart(props: Props) {
                 display: false
             },
             title: {
-                display: true,
-                text: '대기 중 농도',
+                display: false,
             },
         },
     };
