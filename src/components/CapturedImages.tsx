@@ -1,13 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
+import axios from "axios";
 
-const CapturedImages = () => {
+const CapturedImages = (props: Props) => {
+    const {dron} = props;
+    const [imageList, setImageList] = useState<Image[]>([]);
+
+    const fetchImages = async () => {
+        const res = await axios.get('/dron/image/list', {params: {video_id: dron.id}});
+        setImageList(res.data);
+    }
+
+    useEffect(() => {
+        fetchImages();
+    }, []);
+
     return (
         <RootDiv>
             <ImageGroupDiv>
-                <ImgButton>1</ImgButton>
-                <ImgButton>2</ImgButton>
-                <ImgButton>3</ImgButton>
+                {
+                    imageList.map((img) => (
+                        <ImgButton>{img.image_url}</ImgButton>
+                    ))
+                }
             </ImageGroupDiv>
         </RootDiv>
     )

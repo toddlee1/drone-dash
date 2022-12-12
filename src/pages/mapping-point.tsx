@@ -40,26 +40,31 @@ const MappingPointPage = () => {
                 </MapDiv>
             </Left>
             <Right>
-                <div style={{width: '100%', display: 'flex', justifyContent: 'end', marginBottom: '1rem'}}>
+                <div style={{ width: '100%', height: '20%', display: 'flex', justifyContent: 'end', marginBottom: '1rem'}}>
                     <Link to={`/detail/${dron.id}`} state={{id: dron.id}}>
                         <button style={{width: '10rem'}}>일반영상 페이지</button>
                     </Link>
                 </div>
-                <Player
-                    playsInline
-                    autoPlay
-                    src={dron.video_url}
-                >
-                    <ControlBar/>
-                </Player>
-                <br/>
-                <Player
-                    playsInline
-                    autoPlay
-                    src={dron.ir_video_url}
-                >
-                    <ControlBar/>
-                </Player>
+                <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', padding: '20px', backgroundColor: '#212121', height: '80%'}}>
+                    <div style={{height: '50%'}}>
+                        <Player
+                            playsInline
+                            autoPlay
+                            src={dron.video_url}
+                        >
+                            <ControlBar/>
+                        </Player>
+                    </div>
+                    <div style={{height: '50%'}}>
+                        <Player
+                            playsInline
+                            autoPlay
+                            src={dron.ir_video_url}
+                        >
+                            <ControlBar/>
+                        </Player>
+                    </div>
+                </div>
             </Right>
         </Root>
     )
@@ -93,16 +98,19 @@ const Left = styled.div`
 
 const DronMonDiv = styled.div`
   height: 20%;
+  background-color: #212121;
 `
 
 const MapDiv = styled.div`
   height: 80%;
+  padding: 20px;
+  background-color: #212121;
 `
 
 const Right = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   width: 42.5%;
   background-color: #121212;
   margin: 20px 20px 20px 0px;

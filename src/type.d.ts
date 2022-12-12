@@ -2,6 +2,7 @@ type GasDataType = {
     id: number;
     oxy: string;
     sensed: string;
+    video_id: number;
 }
 
 type Site = {
@@ -44,6 +45,12 @@ type Dron = {
     admin_name: string,
     rate1: number,
     rate2: number
+}
+
+type Image = {
+    id: number;
+    image_url: string;
+    video_id: number;
 }
 
 type Props = {

@@ -15,13 +15,14 @@ const DetailPage = () => {
     const {state} = useLocation();
     const [dron, setDron] = useState<Dron>({} as Dron);
     const [gasData, setGasData] = useState<GasDataType[]>([]);
+
     const fetchDron = async () => {
         const res = await axios.get(`/dron/detail/${state.id}`);
         setDron(res.data);
     }
 
     const fetchGas = async () => {
-        const res = await axios.get('/dron/gas', {params: {sensed: Math.floor(new Date(dron.created_at).getTime() / 1000)}});
+        const res = await axios.get('/dron/gas', {params: {video_id: state.id}});
         setGasData(res.data);
     }
 
@@ -53,16 +54,18 @@ const DetailPage = () => {
                             <button style={{width: '10rem'}}>열영상 페이지</button>
                         </Link>
                     </div>
-                    <Player
-                        playsInline
-                        autoPlay
-                        src={dron.video_url}
-                    >
-                        <ControlBar/>
-                    </Player>
+                    <div style={{width: '100%', backgroundColor: '#212121', padding: '20px'}}>
+                        <Player
+                            playsInline
+                            autoPlay
+                            src={dron.video_url}
+                        >
+                            <ControlBar/>
+                        </Player>
+                    </div>
                 </RightTop>
                 <RightBottom>
-                    <CapturedImages/>
+                    <CapturedImages dron={dron}/>
                 </RightBottom>
             </Right>
         </Root>
