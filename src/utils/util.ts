@@ -16,8 +16,8 @@ export function formatTime(date: Date | string | number): string {
 
 export function getBgColor(value: number): string {
     // const oxy = Number(currentData && currentData.oxy);
-    if (value <= 18.1 || value >= 23.5) return '#f50';
-    else if (value > 18.1 && value < 18.3) return '#fadb14';
-    else if (value >= 23.2 && value < 23.5 ) return '#fadb14';
-    else return '#87d068';
+    if (value <= 18.1 || value >= 23.5) return '#ff0000';
+    else if (value > 18.1 && value < 20.3) return '#2bfe00';
+    else if (value >= 21.5 && value < 23.5 ) return '#2bfe00';
+    else return '#0091ff';
 }

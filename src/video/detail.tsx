@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, Col, Row, Select, Space, Switch, Table} from "antd";
 import {TABLE_COLUMNS, VIDEO_TABLE_COLUMNS} from "../constant";
 import axios from "axios";
-import {LineChart} from "../line-chart";
+import {LineChart} from "../components/monitoring/line-chart";
 import {Player} from 'video-react';
 import {useLocation} from "react-router";
 

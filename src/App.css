@@ -35,3 +35,71 @@
     transform: rotate(360deg);
   }
 }
+
+/* Remove default bullets */
+ul, #myUL {
+  list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: white;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+  display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+  display: block;
+  padding-left: 0;
+}
+
+.rental-manager-progress-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 10px solid #024a92;
+  padding-top: 15px;
+  margin-top: 55px;
+}
+
+.dot-active{
+  background-color: #fff !important;
+}
+
+.rental-manager-progress-bar-container div {
+  background-color: #024a92;
+  font-weight: bold;
+  color: #7ea5cc;
+  border: 2px solid #024a92;
+  margin-top: -45px;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 99;
+}

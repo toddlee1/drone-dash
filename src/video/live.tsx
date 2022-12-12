@@ -4,7 +4,7 @@ import {Card, Col, Row, Space, Statistic, Switch, Table} from "antd";
 import ReactHlsPlayer from "react-hls-player";
 import {NCP_STREAM_VIDEO_URL, NCP_STREAM_VIDEO_URL_IR, TABLE_COLUMNS} from "../constant";
 import axios from "axios";
-import {LineChart} from "../line-chart";
+import {LineChart} from "../components/monitoring/line-chart";
 
 type BgColor = '#3f8600' | '#cf1322' | '#fadb14';
 

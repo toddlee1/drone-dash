@@ -1,56 +1,70 @@
-import React, {useState} from 'react';
-import Live from "./video/live";
-import {Layout, Menu, Select} from "antd";
-import {LaptopOutlined} from '@ant-design/icons';
-import type {MenuProps} from 'antd';
-import {Route, Routes} from "react-router";
-import {Link} from "react-router-dom";
-import VideoDetail from "./video/detail";
-import VideoList from "./video/list";
+import React from 'react';
+import styled from "styled-components";
+import {Route, Routes} from "react-router-dom";
+import MainPage from "./pages/main";
+import DetailPage from "./pages/detail";
+import MappingPointPage from "./pages/mapping-point";
 
-
-const {Header, Content, Sider} = Layout;
 
 const CustomLayout = () => {
-    const items1: MenuProps['items'] = ['1', '2', '3'].map(key => ({
-        key,
-        label: `nav ${key}`,
-    }));
-
     return (
-        <Layout style={{height: '100vh', backgroundColor: 'black'}}>
-            <Header style={{borderBottom: 'solid white 0.5px', backgroundColor: 'black'}}>
-                <div className="logo"/>
-            </Header>
-            <Content style={{padding: '0 50px', height: '100%'}}>
-                <Layout className="site-layout-background" style={{padding: '24px 0', height: '100%', backgroundColor: 'black'}}>
-                    <Sider className="site-layout-background" width={200} style={{border: 'solid white 0.5px', backgroundColor: 'black'}}>
-                        <Menu
-                            theme="dark"
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{height: '100%', backgroundColor: 'black'}}
-                        >
-                            <Menu.Item>
-                                <Link to="/"><LaptopOutlined/> Live</Link>
-                            </Menu.Item>
-                            <Menu.Item>
-                                <Link to="/videos"><LaptopOutlined/> Recorded</Link>
-                            </Menu.Item>
-                        </Menu>
-                    </Sider>
-                    <Content style={{padding: '0 12px', width: '1500px', height: '100%'}}>
-                        <Routes>
-                            <Route path="/" element={<Live/>}/>
-                            <Route path="/videos" element={<VideoList />}/>
-                            <Route path="/video/:id" element={<VideoDetail />}/>
-                        </Routes>
-                    </Content>
-                </Layout>
-            </Content>
-        </Layout>
+        <Root>
+            <Head>
+                <LogoImg src={`${process.env.PUBLIC_URL}/img/fmpd-logo.png`}/>
+                <IconGroupDiv>
+                    <IconImg src={`${process.env.PUBLIC_URL}/img/enter.png`}/>
+                    <IconImg src={`${process.env.PUBLIC_URL}/img/settings.png`}/>
+                </IconGroupDiv>
+            </Head>
+            <Body>
+                <Routes>
+                    <Route path="/" element={<MainPage/>}></Route>
+                    <Route path="/detail/:id" element={<DetailPage/>}></Route>
+                    <Route path="/mapping/:id" element={<MappingPointPage/>}></Route>
+
+                    {/*<Route path="*" element={<NotFound />}></Route>*/}
+                </Routes>
+            </Body>
+        </Root>
     )
 }
 
 export default CustomLayout;
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  min-width: 1330px;
+`
+
+const Head = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(5vh + 20px);
+  background-color: #121212;
+`
+
+const LogoImg = styled.img`
+  //width: 10rem;
+  height: 4rem;
+  object-fit: contain;
+  margin: 7px 0 0 1rem;
+`
+
+const IconGroupDiv = styled.div`
+  height: 2rem;
+  margin-right: 1rem;
+`
+
+const IconImg = styled.img`
+  height: 100%;
+  margin-right: 1rem;
+`
+
+const Body = styled.div`
+  height: calc(95vh - 20px);
+`
