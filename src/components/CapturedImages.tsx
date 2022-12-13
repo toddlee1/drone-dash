@@ -21,7 +21,7 @@ const CapturedImages = (props: Props) => {
             <ImageGroupDiv>
                 {
                     imageList.map((img, index) => (
-                        <Link to={`/image/${dron.id}`} state={{id: dron.id}}>
+                        <Link to={`/image/${img.id}`} state={{id: img.id}}>
                             <ImgButton>{index + 1}</ImgButton>
                         </Link>
                     ))
