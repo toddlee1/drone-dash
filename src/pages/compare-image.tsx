@@ -23,10 +23,14 @@ const CompareImagePage = () => {
             </Side>
             <VerticalFlexDiv>
                 <CompareImageDiv>
-                    <img src={image.image_url} />
+                    <HalfCompareDiv>
+                        <img style={{padding: '20px', width: '100%'}} src={image.image_url}/>
+                    </HalfCompareDiv>
+                    <HalfCompareDiv>
+                        <img style={{padding: '20px', width: '100%'}} src={image.image_url}/>
+                    </HalfCompareDiv>
                 </CompareImageDiv>
                 <CommentDiv>
-                    <img src={image.image_url}/>
                 </CommentDiv>
             </VerticalFlexDiv>
         </Root>
@@ -57,10 +61,16 @@ const VerticalFlexDiv = styled.div`
 `
 
 const CompareImageDiv = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 70%;
   background-color: #121212;
   margin: 20px 20px 20px 0px;
+`
+
+const HalfCompareDiv = styled.div`
+  width: 50%;
 `
 
 const CommentDiv = styled.div`
