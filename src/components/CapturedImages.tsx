@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const CapturedImages = (props: Props) => {
     const {dron} = props;
@@ -20,7 +21,9 @@ const CapturedImages = (props: Props) => {
             <ImageGroupDiv>
                 {
                     imageList.map((img) => (
-                        <ImgButton>{img.image_url}</ImgButton>
+                        <Link to={`/image/${dron.id}`} state={{id: dron.id}}>
+                            <ImgButton>{img.image_url}</ImgButton>
+                        </Link>
                     ))
                 }
             </ImageGroupDiv>

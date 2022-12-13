@@ -1,25 +1,33 @@
-import React, {RefObject, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import {TEST_VIDEO_URL_LIST} from "../constant";
 import {ControlBar, Player} from "video-react";
 
-const SIXTEEN_LIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
 function VideoList() {
+
+    const [dronList, setDronList] = useState<Dron[]>([]);
+
+    const fetchDronList = async () => {
+        const res = await axios.get(`/dron/list`);
+        setDronList(res.data);
+    }
+
+    useEffect(() => {
+        fetchDronList();
+    }, []);
 
     return (
         <RootDiv>
             <VideoGroupDiv>
-                {SIXTEEN_LIST.map((it) => {
+                {dronList.map((dr) => {
                     return (
                         <VideoDiv>
-                            <Link style={{height: '100%', width: '100%'}} to={`/live/detail/${it}`}>
+                            <Link style={{height: '100%', width: '100%'}} to={`/detail/${dr.id}`} state={{id: dr.id}}>
                                 <Player
                                     playsInline
                                     autoPlay
-                                    src={TEST_VIDEO_URL_LIST[it % 14]}
+                                    src={dr.video_url}
                                 >
                                     <ControlBar disableCompletely={true}/>
                                 </Player>

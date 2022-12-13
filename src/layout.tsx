@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import MainPage from "./pages/main";
 import DetailPage from "./pages/detail";
 import MappingPointPage from "./pages/mapping-point";
+import CompareImagePage from "./pages/compare-image";
 
 
 const CustomLayout = () => {
@@ -21,7 +22,7 @@ const CustomLayout = () => {
                     <Route path="/" element={<MainPage/>}></Route>
                     <Route path="/detail/:id" element={<DetailPage/>}></Route>
                     <Route path="/mapping/:id" element={<MappingPointPage/>}></Route>
-
+                    <Route path="/image/:id" element={<CompareImagePage/>}></Route>
                     {/*<Route path="*" element={<NotFound />}></Route>*/}
                 </Routes>
             </Body>
