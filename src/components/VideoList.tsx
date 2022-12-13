@@ -23,11 +23,12 @@ function VideoList() {
                 {dronList.map((dr) => {
                     return (
                         <VideoDiv>
-                            <Link style={{height: '100%', width: '100%'}} to={`/detail/${dr.id}`} state={{id: dr.id}}>
+                            <Link style={{width: '100%'}} to={`/detail/${dr.id}`} state={{id: dr.id}}>
                                 <Player
                                     playsInline
                                     autoPlay
                                     src={dr.video_url}
+                                    aspectRatio={'2:1'}
                                 >
                                     <ControlBar disableCompletely={true}/>
                                 </Player>
