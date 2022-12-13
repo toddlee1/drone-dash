@@ -14,7 +14,7 @@ const CapturedImages = (props: Props) => {
 
     useEffect(() => {
         fetchImages();
-    }, []);
+    }, [dron]);
 
     return (
         <RootDiv>
@@ -41,7 +41,7 @@ const RootDiv = styled.div`
 
 const ImageGroupDiv = styled.div`
   display: flex;
-  height: 100%;
+  max-height: 100%;
   flex-direction: row;
   flex-wrap: wrap;
   overflow-y: scroll;

@@ -51,6 +51,7 @@ type Image = {
     id: number;
     image_url: string;
     video_id: number;
+    memo: string;
 }
 
 type Props = {

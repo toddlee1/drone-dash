@@ -4,6 +4,15 @@ import styled from "styled-components";
 
 const DronMon = (props: Props) => {
     const {dron} = props;
+    const getBatteryImage = (capacity: number) => {
+        if (capacity == 100) return `${process.env.PUBLIC_URL}/img/battery100-white.png`;
+        else if (capacity < 100 && capacity >= 80) return `${process.env.PUBLIC_URL}/img/battery80-white.png`;
+        else if (capacity < 80 && capacity >= 60) return `${process.env.PUBLIC_URL}/img/battery60-white.png`;
+        else if (capacity < 60 && capacity >= 40) return `${process.env.PUBLIC_URL}/img/battery40-white.png`;
+        else if (capacity < 40 && capacity >= 20) return `${process.env.PUBLIC_URL}/img/battery20-white.png`;
+        else if (capacity < 0 && capacity >= 20) return `${process.env.PUBLIC_URL}/img/battery0-white.png`;
+        else return `${process.env.PUBLIC_URL}/img/battery0-white.png`;
+    }
     return (
         <RootDiv>
             <TopDiv>
@@ -24,10 +33,10 @@ const DronMon = (props: Props) => {
                 </HalfWidthDiv>
             </TopDiv>
             <BottomDiv>
-                <img src={`${process.env.PUBLIC_URL}/img/empty-battery.png`} style={{width: '3rem', height: '3rem', margin: '0 1rem 0 1rem'}} />
+                <img src={getBatteryImage(dron.battery)} style={{width: '3rem', height: '3rem', margin: '0 1rem 0 1rem'}} />
                 <TextGroupDiv direction="row">
                     <TextDiv style={{marginRight: '1rem'}}>Battery {dron.battery}%</TextDiv>
-                    <TextDiv style={{marginRight: '1rem'}}>운영시간 {dron.optime}</TextDiv>
+                    <TextDiv style={{marginRight: '1rem'}}>현재전압 {21.2 + (dron.battery / 25)}v</TextDiv>
                     <TextDiv style={{marginRight: '1rem'}}>고도 {dron.lat}m</TextDiv>
                 </TextGroupDiv>
             </BottomDiv>

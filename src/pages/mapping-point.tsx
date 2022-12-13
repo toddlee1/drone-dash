@@ -46,20 +46,22 @@ const MappingPointPage = () => {
                     </Link>
                 </div>
                 <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', padding: '20px', backgroundColor: '#212121', height: '80%'}}>
-                    <div style={{height: '50%'}}>
+                    <div style={{width: '100%'}}>
                         <Player
                             playsInline
                             autoPlay
                             src={dron.video_url}
+                            aspectRatio={'25:10'}
                         >
                             <ControlBar/>
                         </Player>
                     </div>
-                    <div style={{height: '50%'}}>
+                    <div style={{width: '100%'}}>
                         <Player
                             playsInline
                             autoPlay
                             src={dron.ir_video_url}
+                            aspectRatio={'25:10'}
                         >
                             <ControlBar/>
                         </Player>

@@ -19,9 +19,9 @@ const OxygenTable = (props: CustomProps) => {
                     </thead>
                     <tbody style={{textAlign: 'center'}}>
                     {
-                        gas.map(g =>
+                        gas.map((g, idx) =>
                             <tr style={{borderBottom: '0.5px solid white'}}>
-                                <td>{g.id}</td>
+                                <td>{idx + 1}</td>
                                 <td style={{color: getBgColor(Number(g.oxy))}}>{g.oxy}</td>
                                 <td>{formatDateTime(g.sensed)}</td>
                             </tr>

@@ -10,6 +10,9 @@ import CompareImagePage from "./pages/compare-image";
 const CustomLayout = () => {
     return (
         <Root>
+            <DoosanLogo>
+                <img style={{marginLeft: '1rem'}} src={`${process.env.PUBLIC_URL}/img/doosan.png`}/>
+            </DoosanLogo>
             <Head>
                 <LogoImg src={`${process.env.PUBLIC_URL}/img/fmpd-logo.png`}/>
                 <IconGroupDiv>
@@ -23,9 +26,11 @@ const CustomLayout = () => {
                     <Route path="/detail/:id" element={<DetailPage/>}></Route>
                     <Route path="/mapping/:id" element={<MappingPointPage/>}></Route>
                     <Route path="/image/:id" element={<CompareImagePage/>}></Route>
-                    {/*<Route path="*" element={<NotFound />}></Route>*/}
                 </Routes>
             </Body>
+            <Foot>
+                <img style={{marginRight: '1rem'}} src={`${process.env.PUBLIC_URL}/img/sammi-logo.png`}/>
+            </Foot>
         </Root>
     )
 }
@@ -41,19 +46,24 @@ const Root = styled.div`
   min-width: 1330px;
 `
 
+const DoosanLogo = styled.div`
+  display: flex;
+  align-items: center;
+  height: 3rem;
+`
+
 const Head = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: calc(5vh + 20px);
+  height: 5vh;
   background-color: #121212;
 `
 
 const LogoImg = styled.img`
-  //width: 10rem;
   height: 4rem;
   object-fit: contain;
-  margin: 7px 0 0 1rem;
+  margin: 7px 0 0 0.5rem;
 `
 
 const IconGroupDiv = styled.div`
@@ -67,5 +77,15 @@ const IconImg = styled.img`
 `
 
 const Body = styled.div`
-  height: calc(95vh - 20px);
+  height: calc(90vh - 20px - 3rem);
+  min-height: 900px;
+  min-width: 1750px;
+`
+
+const Foot = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 5vh;
+  background-color: #121212;
 `
