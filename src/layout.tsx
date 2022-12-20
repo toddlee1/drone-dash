@@ -5,6 +5,7 @@ import MainPage from "./pages/main";
 import DetailPage from "./pages/detail";
 import MappingPointPage from "./pages/mapping-point";
 import CompareImagePage from "./pages/compare-image";
+import LivePage from "./pages/live";
 
 
 const CustomLayout = () => {
@@ -23,6 +24,7 @@ const CustomLayout = () => {
             <Body>
                 <Routes>
                     <Route path="/" element={<MainPage/>}></Route>
+                    <Route path="/live/:id" element={<LivePage/>}></Route>
                     <Route path="/detail/:id" element={<DetailPage/>}></Route>
                     <Route path="/mapping/:id" element={<MappingPointPage/>}></Route>
                     <Route path="/image/:id" element={<CompareImagePage/>}></Route>

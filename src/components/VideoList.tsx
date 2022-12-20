@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {RefObject, useEffect, useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {ControlBar, Player} from "video-react";
+import ReactHlsPlayer from "react-hls-player";
 
 function VideoList() {
 
     const [dronList, setDronList] = useState<Dron[]>([]);
 
     const fetchDronList = async () => {
-        const res = await axios.get(`/dron/list`);
+        const res = await axios.get(`/dron/live/list`);
         setDronList(res.data);
     }
 
@@ -23,15 +24,14 @@ function VideoList() {
                 {dronList.map((dr) => {
                     return (
                         <VideoDiv>
-                            <Link style={{width: '100%'}} to={`/detail/${dr.id}`} state={{id: dr.id}}>
-                                <Player
-                                    playsInline
-                                    autoPlay
+                            <Link style={{width: '100%'}} to={`/live/${dr.id}`} state={{id: dr.id}}>
+                                <ReactHlsPlayer
                                     src={dr.video_url}
-                                    aspectRatio={'2:1'}
-                                >
-                                    <ControlBar disableCompletely={true}/>
-                                </Player>
+                                    autoPlay={true}
+                                    playerRef={{} as  RefObject<HTMLVideoElement>}
+                                    width="100%"
+                                    height="auto"
+                                />
                             </Link>
                         </VideoDiv>)
                 })}
