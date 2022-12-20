@@ -34,7 +34,7 @@ const LivePage = () => {
     }
 
     const fetchGas = async () => {
-        const res = await axios.get('/dron/gas', {params: {video_id: state.id}});
+        const res = await axios.get('/dron/gas', {params: {video_id: state.id, size: 20}});
         setGasData(res.data);
     }
 
@@ -54,7 +54,7 @@ const LivePage = () => {
     }, [state]);
 
     useEffect(() => {
-        // dron && fetchGas();
+        dron && fetchGas();
     }, [dron])
 
     useEffect(() => {

@@ -28,6 +28,7 @@ function VideoList() {
                                 <ReactHlsPlayer
                                     src={dr.video_url}
                                     autoPlay={true}
+                                    controls={true}
                                     playerRef={{} as  RefObject<HTMLVideoElement>}
                                     width="100%"
                                     height="auto"
